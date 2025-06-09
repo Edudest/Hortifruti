@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Produtos")
-public class Produto {
+public class Produtos {
 
     @Id
     @GeneratedValue
@@ -28,4 +28,12 @@ public class Produto {
 
     @Column(nullable = false)
     private Integer estoque;
+
+    public Produtos(String nome, Double preco, String tipo, Integer estoque) {
+        setNome(nome);
+        setPreco(preco);
+        setTipo(tipo);
+        setEstoque(estoque);
+    }
 }
+
