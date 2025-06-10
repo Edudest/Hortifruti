@@ -17,4 +17,13 @@ public class ProdutoDTO {
     private String tipo;
 
     private Integer estoque;
+
+    public void veiculo(String nome, String tipo, Double preco, Integer estoque) {
+        setNome(nome);
+        setTipo(tipo);
+        setPreco(preco);
+        setEstoque(estoque);
+    }
 }
+
+
