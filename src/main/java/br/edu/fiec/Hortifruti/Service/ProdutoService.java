@@ -33,5 +33,15 @@ public class ProdutoService {
         )).orElse(null);
     }
 
+    public ProdutoDTO getByNome(String Nome) {
+        return produtoRepository.findByNome(Nome).map(produtos ->
+            new ProdutoDTO(
+                produtos.getNome(),
+                produtos.getPreco(),
+                produtos.getTipo(),
+                produtos.getEstoque()
+            )).orElse(null);
+
+    }
 
 }

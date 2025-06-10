@@ -26,4 +26,10 @@ public class ProdutoController {
     public ProdutoDTO getById(Integer id) {
         return produtoService.getById(id);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "Nome", produces = APPLICATION_JSON_VALUE)
+    public ProdutoDTO getByNome(String Nome) {
+        return produtoService.getByNome(Nome);
+    }
 }
