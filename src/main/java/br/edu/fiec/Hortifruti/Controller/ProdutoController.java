@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -29,7 +31,14 @@ public class ProdutoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "Nome", produces = APPLICATION_JSON_VALUE)
-    public ProdutoDTO getByNome(String Nome) {
-        return produtoService.getByNome(Nome);
+    public List<ProdutoDTO> getAllByName(String nome) {
+        return produtoService.getAllByNome(nome);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "Tipo", produces = APPLICATION_JSON_VALUE)
+    public List<ProdutoDTO> findByTipo(String tipo) {
+        return produtoService.getAllByTipo(tipo);
+    }
+
 }
