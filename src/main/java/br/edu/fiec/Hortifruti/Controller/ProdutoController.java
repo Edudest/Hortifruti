@@ -24,7 +24,7 @@ public class ProdutoController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "Id", produces = APPLICATION_JSON_VALUE)
     public ProdutoDTO getById(Integer id) {
         return produtoService.getById(id);
     }

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Produtos")
-public class Produtos {
+@Table(name = "Clientes")
+public class Clientes{
 
     @Id
     @GeneratedValue
@@ -20,21 +20,18 @@ public class Produtos {
     private String nome;
 
     @Column(nullable = false)
-    private Double preco;
+    private Long cpf;
 
     @Column(nullable = false)
-    private String tipo;
+    private String endereco;
 
     @Column(nullable = false)
-    private Integer estoque;
+    private Long telefone;
 
-
-
-    public Produtos(String nome, Double preco, String tipo, Integer estoque) {
+    public Clientes(String nome, Long cpf, String endereco, Long telefone) {
         setNome(nome);
-        setPreco(preco);
-        setTipo(tipo);
-        setEstoque(estoque);
+        setCpf(cpf);
+        setEndereco(endereco);
+        setTelefone(telefone);
     }
 }
-

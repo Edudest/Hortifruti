@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoDTO {
+public class ClienteDTO {
 
     private String nome;
 
-    private Double preco;
+    private Long cpf;
 
-    private String tipo;
+    private String endereco;
 
-    private Integer estoque;
-
+    private Long telefone;
 }

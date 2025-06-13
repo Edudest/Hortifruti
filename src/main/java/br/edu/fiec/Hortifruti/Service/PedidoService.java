@@ -1,4 +1,4 @@
 package br.edu.fiec.Hortifruti.Service;
 
-public class FornecedorService {
+public class PedidoService {
 }
