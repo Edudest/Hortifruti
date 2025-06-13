@@ -5,7 +5,6 @@ import br.edu.fiec.Hortifruti.Service.ProdutoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -13,6 +12,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "Produto")
+
 public class ProdutoController {
 
     private final ProdutoService produtoService;
@@ -41,4 +41,18 @@ public class ProdutoController {
         return produtoService.getAllByTipo(tipo);
     }
 
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(Integer id){
+        produtoService.deleteProduct(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(consumes = APPLICATION_JSON_VALUE)
+    public void updateProduct(@RequestParam Integer id, @RequestBody ProdutoDTO produtoDTO){
+        produtoService.updateProduct(id, produtoDTO);
+    }
+
 }
+
+

@@ -28,8 +28,6 @@ public class Produtos {
     @Column(nullable = false)
     private Integer estoque;
 
-
-
     public Produtos(String nome, Double preco, String tipo, Integer estoque) {
         setNome(nome);
         setPreco(preco);
