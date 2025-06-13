@@ -14,8 +14,8 @@ import java.util.List;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
+
     public void createProduct(ProdutoDTO produtoDTO) {
-        List<ProdutoDTO> ProdutoDTOlist = new ArrayList<>();
 
         Produtos produto = new Produtos(
                 produtoDTO.getNome(),
@@ -68,22 +68,4 @@ public class ProdutoService {
         });
         return ProdutosDTOList;
     }
-
-    public void updateProduct(Integer id, ProdutoDTO produtoDTO) {
-
-        produtoRepository.findById(id)
-                .ifPresent(productReturn -> {
-                    productReturn.setNome(produtoDTO.getNome());
-                    productReturn.setPreco(produtoDTO.getPreco());
-                    productReturn.setTipo(produtoDTO.getTipo());
-                    productReturn.setEstoque(produtoDTO.getEstoque());
-                    produtoRepository.save(productReturn);
-                });
-    }
-
-    public void deleteProduct (Integer id){
-        produtoRepository.deleteById(id);
-    }
 }
-
-
