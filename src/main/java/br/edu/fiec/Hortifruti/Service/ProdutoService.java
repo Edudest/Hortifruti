@@ -68,5 +68,22 @@ public class ProdutoService {
         });
         return ProdutosDTOList;
     }
+
+    public void updateProduct(Integer id, ProdutoDTO produtoDTO) {
+
+        produtoRepository.findById(id)
+                .ifPresent(productReturn -> {
+                    productReturn.setNome(produtoDTO.getNome());
+                    productReturn.setPreco(produtoDTO.getPreco());
+                    productReturn.setTipo(produtoDTO.getTipo());
+                    productReturn.setEstoque(produtoDTO.getEstoque());
+                    produtoRepository.save(productReturn);
+                });
+    }
+
+    public void deleteProduct (Integer id){
+        produtoRepository.deleteById(id);
+    }
 }
+
 
