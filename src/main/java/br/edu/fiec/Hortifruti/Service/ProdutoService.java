@@ -14,8 +14,8 @@ import java.util.List;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
-
     public void createProduct(ProdutoDTO produtoDTO) {
+        List<ProdutoDTO> ProdutoDTOlist = new ArrayList<>();
 
         Produtos produto = new Produtos(
                 produtoDTO.getNome(),
@@ -69,3 +69,4 @@ public class ProdutoService {
         return ProdutosDTOList;
     }
 }
+
