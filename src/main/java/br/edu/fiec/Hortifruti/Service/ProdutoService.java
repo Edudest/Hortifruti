@@ -4,6 +4,7 @@ import br.edu.fiec.Hortifruti.Model.DTO.ProdutoDTO;
 import br.edu.fiec.Hortifruti.Model.Entity.Produtos;
 import br.edu.fiec.Hortifruti.Repository.ProdutoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProdutoService {
 
+    @Autowired
     private final ProdutoRepository produtoRepository;
 
     public void createProduct(ProdutoDTO produtoDTO) {
@@ -83,5 +85,9 @@ public class ProdutoService {
 
     public void deleteProduct (Integer id){
         produtoRepository.deleteById(id);
+    }
+
+    public Produtos search(Integer Id) {
+        return produtoRepository.findById(Id).orElse(null);
     }
 }
