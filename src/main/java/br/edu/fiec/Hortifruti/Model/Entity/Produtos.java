@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -34,5 +37,8 @@ public class Produtos {
         setTipo(tipo);
         setEstoque(estoque);
     }
+
+    @ManyToMany(mappedBy = "produto")
+    private List<Pedidos> pedido;
 }
 
