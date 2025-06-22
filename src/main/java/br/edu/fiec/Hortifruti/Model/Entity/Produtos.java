@@ -38,7 +38,7 @@ public class Produtos {
         setEstoque(estoque);
     }
 
-    @ManyToMany(mappedBy = "produto")
-    private List<Pedidos> pedido;
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedidos> pedidos;
 }
 
