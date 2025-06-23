@@ -13,10 +13,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,10 +34,10 @@ public class PedidoService {
 
     public Pedidos createPedido(PedidoDTO pedidoDTO) throws Exception {
         Clientes cliente = clienteRepository.findById(pedidoDTO.getClienteId())
-            .orElseThrow(() -> new Exception("Cliente não encontrado"));
+                .orElseThrow(() -> new Exception("Cliente não encontrado"));
 
         Funcionarios funcionario = funcionarioRepository.findById(pedidoDTO.getFuncionarioId())
-            .orElseThrow(() -> new Exception("Funcionario não encontrado"));
+                .orElseThrow(() -> new Exception("Funcionário não encontrado"));
 
         List<Produtos> produtos = pedidoDTO.getProdutoId().stream()
             .map(id -> {
@@ -52,15 +50,55 @@ public class PedidoService {
             })
                 .toList();
 
-        Pedidos pedido = new Pedidos();
-            pedidoDTO.setClienteId(cliente.getId());
-            pedidoDTO.setFuncionarioId(funcionario.getId()),
-            pedidoDTO.setProdutoId(produtos.get()),
-            pedidoDTO.getData();
+        Pedidos pedido = new Pedidos(
+                cliente,
+                funcionario,
+                produtos,
+                pedidoDTO.getData());
+        pedido.setStatus(pedidoDTO.getStatus());
 
-
-        pedidoRepository.save(pedido);
-        return pedido;
+        return pedidoRepository.save(pedido);
     }
 
+    public Pedidos getById(Integer id) throws Exception {
+        return pedidoRepository.findById(id)
+                .orElseThrow(() -> new Exception("Pedido com id " + id + " não encontrado"));
+    }
+
+    public List<Pedidos> getAll() {
+        return pedidoRepository.findAll();
+    }
+
+    public List<Pedidos> getByStatus(String status) throws Exception {
+        return pedidoRepository.findByStatus(status).
+                orElseThrow(() -> new Exception("Pedido com  Status não encontrado"));
+    }
+
+    public void updateOrder(Integer id, PedidoDTO dto) throws Exception {
+        Pedidos pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new Exception("Pedido não encontrado"));
+
+        Clientes cliente = clienteRepository.findById(dto.getClienteId())
+                .orElseThrow(() -> new Exception("Cliente não encontrado"));
+
+        Funcionarios funcionario = funcionarioRepository.findById(dto.getFuncionarioId())
+                .orElseThrow(() -> new Exception("Funcionário não encontrado"));
+
+        List<Produtos> produtos = dto.getProdutoId().stream()
+                .map(produtoId -> produtoRepository.findById(produtoId)
+                        .orElseThrow(() -> new RuntimeException("Produto " + produtoId + " não encontrado")))
+                .toList();
+
+        pedido.setCliente(cliente);
+        pedido.setFuncionario(funcionario);
+        pedido.setProduto(new ArrayList<>(produtos));
+        pedido.setData(dto.getData());
+        pedido.setStatus(dto.getStatus());
+
+        pedidoRepository.save(pedido);
+    }
+
+    public void deletePedido(Integer id) {
+        pedidoRepository.deleteById(id);
+    }
 }

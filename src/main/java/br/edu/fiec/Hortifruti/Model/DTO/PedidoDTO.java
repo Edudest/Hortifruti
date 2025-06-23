@@ -19,4 +19,6 @@ public class PedidoDTO {
    private List<Integer> produtoId;
 
    private LocalDate data;
+
+   private String status;
 }

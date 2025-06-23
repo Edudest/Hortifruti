@@ -1,5 +1,6 @@
 package br.edu.fiec.Hortifruti.Model.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Pedidos {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     private Integer Id;
 
     @ManyToOne
@@ -28,7 +30,7 @@ public class Pedidos {
     @JoinColumn(name = "id_Funcionario")
     private Funcionarios funcionario;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "pedido_Produto",
             joinColumns = @JoinColumn(name = "id_Pedido"),
@@ -36,14 +38,16 @@ public class Pedidos {
     )
     private List<Produtos> produto = new ArrayList<>();
 
+
     private LocalDate data;
 
-    public Pedidos(Integer clienteId, Integer funcionarioId, List<Integer> produtoId, LocalDate data) {
+    private String status;
+
+    public Pedidos(Clientes cliente, Funcionarios funcionario, List<Produtos> produtos, LocalDate data) {
         setCliente(cliente);
         setFuncionario(funcionario);
         setProduto(produto);
         setData(data);
+        setStatus(status);
     }
 }
-
-

@@ -21,7 +21,7 @@ public class ProdutoService {
 
         Produtos produto = new Produtos(
                 produtoDTO.getNome(),
-                produtoDTO.getPreco(),
+                produtoDTO.getPrecoUnitario(),
                 produtoDTO.getTipo(),
                 produtoDTO.getEstoque()
         );
@@ -33,7 +33,7 @@ public class ProdutoService {
         return produtoRepository.findById(id).map(produtos ->
             new ProdutoDTO(
                 produtos.getNome(),
-                produtos.getPreco(),
+                produtos.getPrecoUnitario(),
                 produtos.getTipo(),
                 produtos.getEstoque()
         )).orElse(null);
@@ -46,7 +46,7 @@ public class ProdutoService {
             ProdutosList.forEach(produtos -> {
                 ProdutosDTOList.add(new ProdutoDTO(
                     produtos.getNome(),
-                    produtos.getPreco(),
+                    produtos.getPrecoUnitario(),
                     produtos.getTipo(),
                     produtos.getEstoque()
                 ));
@@ -62,7 +62,7 @@ public class ProdutoService {
             ProdutosList.forEach(produtos -> {
                 ProdutosDTOList.add(new ProdutoDTO(
                         produtos.getNome(),
-                        produtos.getPreco(),
+                        produtos.getPrecoUnitario(),
                         produtos.getTipo(),
                         produtos.getEstoque()
                 ));
@@ -76,7 +76,7 @@ public class ProdutoService {
         produtoRepository.findById(id)
                 .ifPresent(productReturn -> {
                     productReturn.setNome(produtoDTO.getNome());
-                    productReturn.setPreco(produtoDTO.getPreco());
+                    productReturn.setPrecoUnitario(produtoDTO.getPrecoUnitario());
                     productReturn.setTipo(produtoDTO.getTipo());
                     productReturn.setEstoque(produtoDTO.getEstoque());
                     produtoRepository.save(productReturn);
@@ -85,9 +85,5 @@ public class ProdutoService {
 
     public void deleteProduct (Integer id){
         produtoRepository.deleteById(id);
-    }
-
-    public Produtos search(Integer Id) {
-        return produtoRepository.findById(Id).orElse(null);
     }
 }

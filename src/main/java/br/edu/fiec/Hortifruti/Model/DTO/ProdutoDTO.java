@@ -11,10 +11,9 @@ public class ProdutoDTO {
 
     private String nome;
 
-    private Double preco;
+    private Double precoUnitario;
 
     private String tipo;
 
     private Integer estoque;
-
 }

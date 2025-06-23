@@ -1,5 +1,6 @@
 package br.edu.fiec.Hortifruti.Model.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class Produtos {
     private String nome;
 
     @Column(nullable = false)
-    private Double preco;
+    private Double precoUnitario;
 
     @Column(nullable = false)
     private String tipo;
@@ -31,14 +32,15 @@ public class Produtos {
     @Column(nullable = false)
     private Integer estoque;
 
-    public Produtos(String nome, Double preco, String tipo, Integer estoque) {
+    public Produtos(String nome, Double precoUnitario, String tipo, Integer estoque) {
         setNome(nome);
-        setPreco(preco);
+        setPrecoUnitario(precoUnitario);
         setTipo(tipo);
         setEstoque(estoque);
     }
 
     @ManyToMany(mappedBy = "produto")
+    @JsonIgnore
     private List<Pedidos> pedido;
 }
 
