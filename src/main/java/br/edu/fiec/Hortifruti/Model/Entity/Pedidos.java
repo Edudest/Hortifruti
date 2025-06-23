@@ -36,7 +36,7 @@ public class Pedidos {
             joinColumns = @JoinColumn(name = "id_Pedido"),
             inverseJoinColumns = @JoinColumn(name = "id_Produto")
     )
-    private List<Produtos> produto = new ArrayList<>();
+    private List<Produtos> produtos = new ArrayList<>();
 
 
     private LocalDate data;
@@ -46,7 +46,7 @@ public class Pedidos {
     public Pedidos(Clientes cliente, Funcionarios funcionario, List<Produtos> produtos, LocalDate data) {
         setCliente(cliente);
         setFuncionario(funcionario);
-        setProduto(produto);
+        setProdutos(produtos);
         setData(data);
         setStatus(status);
     }

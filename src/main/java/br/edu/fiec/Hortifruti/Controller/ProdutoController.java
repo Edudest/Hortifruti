@@ -20,25 +20,26 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProdutoDTO produtoDTO) {
+
         produtoService.createProduct(produtoDTO);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "Id", produces = APPLICATION_JSON_VALUE)
     public ProdutoDTO getById(Integer id) {
-        return produtoService.getById(id);
+        return produtoService.getProductById(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "Nome", produces = APPLICATION_JSON_VALUE)
     public List<ProdutoDTO> getAllByName(String nome) {
-        return produtoService.getAllByNome(nome);
+        return produtoService.getProductAllByNome(nome);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "Tipo", produces = APPLICATION_JSON_VALUE)
     public List<ProdutoDTO> findByTipo(String tipo) {
-        return produtoService.getAllByTipo(tipo);
+        return produtoService.getProductAllByTipo(tipo);
     }
 
     @DeleteMapping

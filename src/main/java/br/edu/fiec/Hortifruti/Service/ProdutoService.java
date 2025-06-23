@@ -29,7 +29,7 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public ProdutoDTO getById(Integer id) {
+    public ProdutoDTO getProductById(Integer id) {
         return produtoRepository.findById(id).map(produtos ->
             new ProdutoDTO(
                 produtos.getNome(),
@@ -39,7 +39,7 @@ public class ProdutoService {
         )).orElse(null);
     }
 
-    public List<ProdutoDTO> getAllByNome(String nome) {
+    public List<ProdutoDTO> getProductAllByNome(String nome) {
         List<ProdutoDTO> ProdutosDTOList = new ArrayList<>();
 
         produtoRepository.findAllByNome(nome).ifPresent(ProdutosList -> {
@@ -55,7 +55,7 @@ public class ProdutoService {
         return ProdutosDTOList;
     }
 
-    public List<ProdutoDTO> getAllByTipo(String tipo) {
+    public List<ProdutoDTO> getProductAllByTipo(String tipo) {
         List<ProdutoDTO> ProdutosDTOList = new ArrayList<>();
 
         produtoRepository.findByTipo(tipo).ifPresent(ProdutosList -> {
